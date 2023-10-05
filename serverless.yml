@@ -1,0 +1,27 @@
+service: crud-users-ts
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  hello-world:
+    handler: src/lambdas/handler.handler
+    events:
+      - http:
+          path: hello-world
+          method: GET
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+package: 
+  individually: true
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules: true
+    packager: 'npm'
